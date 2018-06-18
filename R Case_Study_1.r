@@ -49,10 +49,9 @@ options(scipen = 999)
 View(x)
 gg<- group_by(customers, Last_state,Last_city)
 View(gg)
-cdata<- summarise(gg, TotalSales=sum(SeriousDlqin2yrs))
+cdata<- summarise(gg, TotalSales=sum(CustomerValue))
 customer_360 <- transform(cdata,percentage_sales=TotalSales*100/sum(TotalSales))
 View(cdata)
 
 #10. What is the count of customers, average number of purchases and average purchase transaction value by last state and city
 x %>% group_by(Last_state,Last_city) %>% summarise(count=sum(as.numeric(Customer.ID)), avg_no_pur=mean(buy.times), avg_pur_tran=(sum(Customer.Value)/count)) 
-warnings()
